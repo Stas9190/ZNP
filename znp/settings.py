@@ -55,7 +55,7 @@ ROOT_URLCONF = 'znp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,8 +76,14 @@ WSGI_APPLICATION = 'znp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'zip_work',
+        'ENGINE': 'sql_server.pyodbc',
+        'HOST': '10.6.139.23',
+        'USER': 'sl_znp',
+        'PASSWORD': '123456eE',
+        'OPTIONS' : {
+            'DRIVER': 'SQL Server',
+        }
     }
 }
 
@@ -119,4 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'UnionZNP/media/')
+MEDIA_URL = '/media/'
